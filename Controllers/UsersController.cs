@@ -105,7 +105,7 @@ namespace Cafe.Controllers
                 var newUser = new User(user.Email, user.Password, user.UserName);
                 _context.Add(newUser);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Redirect("/users/login");;
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt");
             return View(user);

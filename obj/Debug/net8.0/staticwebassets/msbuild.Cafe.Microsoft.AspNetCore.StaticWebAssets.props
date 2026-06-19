@@ -160,6 +160,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\c8c7c6dc-a0ea-4305-8f75-539090eb7e62_ypbpndwlrjdbnqkgnxlvktouttqlgway.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\ce11258a-e252-4391-b4e3-314fa429e84d__8ace2b88-dcf8-41a7-944d-76785c17c987.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Cafe</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Cafe</BasePath>
+      <RelativePath>images/ce11258a-e252-4391-b4e3-314fa429e84d__8ace2b88-dcf8-41a7-944d-76785c17c987.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\ce11258a-e252-4391-b4e3-314fa429e84d__8ace2b88-dcf8-41a7-944d-76785c17c987.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\e2a5baf3-9850-4549-9f7c-ff271636b9d0_Cappuccino_at_Sightglass_Coffee.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Cafe</SourceId>
