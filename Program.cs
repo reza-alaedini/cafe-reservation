@@ -12,7 +12,7 @@ var services = builder.Services;
 var env = builder.Environment;
 var config = builder.Configuration;
 var local = builder.Configuration.GetConnectionString("localsql");
-    
+
 services.AddDbContext<DataContext>(x => x.UseSqlServer(local));
 
 services.AddTransient<IJwtUtils, JwtUtils>();
@@ -84,6 +84,15 @@ app.UseMiddleware<JwtMiddleware>();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+// seed data
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+
+    DbInitializer.Seed(context);
+}
 
 app.Run();
 
