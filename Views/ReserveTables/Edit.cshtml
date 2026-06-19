@@ -1,36 +1,33 @@
-﻿@model Cafe.Models.ReserveTable
+@model Cafe.Models.ReserveTable
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "ویرایش میز";
 }
 
-<h1>Edit</h1>
+<section class="page-hero">
+    <div class="page-eyebrow">ویرایش میز</div>
+    <h1 class="page-title">ویرایش میز شماره @Model.Id</h1>
+    <p class="page-subtitle">قیمت و وضعیت قابل رزرو بودن این میز را تغییر دهید.</p>
+</section>
 
-<h4>ReserveTable</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+<div class="panel">
+    <form asp-action="Edit" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="col-md-8">
+            <label asp-for="Price" class="form-label">قیمت</label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="IsAvalible" />
+                <label class="form-check-label" asp-for="IsAvalible">قابل رزرو است</label>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsAvalible" /> @Html.DisplayNameFor(model => model.IsAvalible)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="col-12 actions">
+            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">بازگشت</a>
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

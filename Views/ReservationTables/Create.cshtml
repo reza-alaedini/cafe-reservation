@@ -1,34 +1,30 @@
-﻿@model Cafe.Models.ReservationTables
+@model Cafe.Models.ReservationTables
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "رزرو جدید";
 }
 
-<h1>Create</h1>
+<section class="page-hero">
+    <div class="page-eyebrow">رزرو میز</div>
+    <h1 class="page-title">ثبت رزرو جدید</h1>
+    <p class="page-subtitle">میز دلخواه و زمان رزرو را انتخاب کنید.</p>
+</section>
 
-<h4>ReservationTables</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TableId" class="control-label"></label>
-                <select asp-for="TableId" class ="form-control" asp-items="ViewBag.TableId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReserveDate" class="control-label"></label>
-                <input asp-for="ReserveDate" class="form-control" />
-                <span asp-validation-for="ReserveDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="panel">
+    <form asp-action="Create" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-6">
+            <label asp-for="TableId" class="form-label">میز</label>
+            <select asp-for="TableId" class="form-select" asp-items="ViewBag.TableId"></select>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ReserveDate" class="form-label">تاریخ و زمان رزرو</label>
+            <input asp-for="ReserveDate" class="form-control" />
+            <span asp-validation-for="ReserveDate" class="text-danger"></span>
+        </div>
+        <div class="col-12 actions">
+            <button type="submit" class="btn btn-primary">ثبت رزرو</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">بازگشت</a>
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

@@ -1,30 +1,32 @@
-﻿@model Cafe.Models.ReserveTable
+@model Cafe.Models.ReserveTable
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "جزئیات میز";
 }
 
-<h1>Details</h1>
+<section class="page-hero">
+    <div class="page-eyebrow">جزئیات میز</div>
+    <h1 class="page-title">میز شماره @Model.Id</h1>
+    <p class="page-subtitle">اطلاعات قیمت و وضعیت رزرو این میز.</p>
+</section>
 
-<div>
-    <h4>ReserveTable</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsAvalible)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsAvalible)
-        </dd>
+<div class="panel">
+    <dl class="detail-list">
+        <div class="detail-row">
+            <dt>قیمت</dt>
+            <dd>@Html.DisplayFor(model => model.Price)</dd>
+        </div>
+        <div class="detail-row">
+            <dt>وضعیت</dt>
+            <dd>
+                <span class="status-badge @(Model.IsAvalible ? "available" : "unavailable")">
+                    @(Model.IsAvalible ? "قابل رزرو" : "غیرفعال")
+                </span>
+            </dd>
+        </div>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="actions mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a>
+        <a asp-action="Index" class="btn btn-outline-secondary">بازگشت</a>
+    </div>
 </div>

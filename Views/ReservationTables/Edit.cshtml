@@ -1,41 +1,37 @@
-﻿@model Cafe.Models.ReservationTables
+@model Cafe.Models.ReservationTables
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "ویرایش رزرو";
 }
 
-<h1>Edit</h1>
+<section class="page-hero">
+    <div class="page-eyebrow">ویرایش رزرو</div>
+    <h1 class="page-title">ویرایش اطلاعات رزرو</h1>
+    <p class="page-subtitle">کاربر، میز و زمان رزرو را به روز کنید.</p>
+</section>
 
-<h4>ReservationTables</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TableId" class="control-label"></label>
-                <select asp-for="TableId" class="form-control" asp-items="ViewBag.TableId"></select>
-                <span asp-validation-for="TableId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReserveDate" class="control-label"></label>
-                <input asp-for="ReserveDate" class="form-control" />
-                <span asp-validation-for="ReserveDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="panel">
+    <form asp-action="Edit" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="col-md-4">
+            <label asp-for="UserId" class="form-label">کاربر</label>
+            <select asp-for="UserId" class="form-select" asp-items="ViewBag.UserId"></select>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="TableId" class="form-label">میز</label>
+            <select asp-for="TableId" class="form-select" asp-items="ViewBag.TableId"></select>
+            <span asp-validation-for="TableId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="ReserveDate" class="form-label">تاریخ رزرو</label>
+            <input asp-for="ReserveDate" class="form-control" />
+            <span asp-validation-for="ReserveDate" class="text-danger"></span>
+        </div>
+        <div class="col-12 actions">
+            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">بازگشت</a>
+        </div>
+    </form>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

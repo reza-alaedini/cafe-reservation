@@ -1,66 +1,50 @@
-﻿@model IEnumerable<Cafe.Models.Product>
-<style>
-    .card {
-        transition: transform 0.7s;
-        background-color: #d6d6d6
-    }
+@model IEnumerable<Cafe.Models.Product>
 
-        .card:hover {
-            transform: rotateY(180deg);
-        }
+@{
+    ViewData["Title"] = "منوی کافه";
+}
 
-        .card .card-body .details {
-            transform: rotateY(-180deg);
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #aaaaaa;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .card:hover .card-body .details {
-            display: inline;
-        }
-
-</style>
-
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Menu</h1>
-    <form method="get" action="@Url.Action("Index", "Home")">
-        <div class="mb-3">
-            <input type="text" name="searchQuery" class="form-control" placeholder="Search by name">
+<section class="page-hero">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <div class="page-eyebrow">منوی امروز</div>
+            <h1 class="page-title">طعم‌های تازه برای یک قرار خوب</h1>
+            <p class="page-subtitle">نوشیدنی‌ها و دسرهای کافه را ببینید، محصول دلخواهتان را پیدا کنید و برای جزئیات بیشتر وارد صفحه محصول شوید.</p>
         </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-    <div class="row">
-    @foreach (var item in Model.Select((value, i) => new { i, value }))
-    {
-        @* var index = Model.IndexOf(item); *@
+        <div class="col-lg-5">
+            <form method="get" action="@Url.Action("Index", "Home")" class="d-flex gap-2">
+                <input type="text" name="searchQuery" class="form-control" placeholder="جستجو در منو" />
+                <button type="submit" class="btn btn-primary">جستجو</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@if (!Model.Any())
+{
+    <div class="panel empty-state">محصولی با این جستجو پیدا نشد.</div>
+}
+else
+{
+    <section class="menu-grid">
+        @foreach (var item in Model)
         {
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="~/images/@item.value.Image" alt="Product Image" class="card-img img-thumbnail" style=" max-height: 200px;">
-                        <div class="card-body">
-                            <h5 class="card-title text-truncate">Name : @Html.DisplayFor(modelItem => item.value.Name)</h5>
-                            <h6 class="card-text text-truncate">Price : @Html.DisplayFor(modelItem => item.value.Price)</h6>
-                            <div class="position-absolute p-2" style="bottom: 1rem; left: 50%; transform: translateX(-50%);">
-                                <button type="button" class="btn btn-link text-dark fs--4" data-bs-toggle="tooltip" title="Show details">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                </button>
-                            </div>
-                            <div class="details">
-                                <p>Additional Information:</p>
-                                <p>@Html.DisplayFor(modelItem => item.value.Description)</p>
-                            </div>
-                        </div>
+            <article class="menu-card">
+                <img src="~/images/@item.Image" alt="@item.Name" />
+                <div class="menu-card-body">
+                    <div class="d-flex justify-content-between align-items-start gap-3">
+                        <h2 class="menu-card-title">@Html.DisplayFor(modelItem => item.Name)</h2>
+                        <span class="status-badge @(item.IsAvalible ? "available" : "unavailable")">
+                            @(item.IsAvalible ? "موجود" : "ناموجود")
+                        </span>
+                    </div>
+                    <p class="menu-card-text mb-0">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center gap-3">
+                        <span class="price-chip">@Html.DisplayFor(modelItem => item.Price)</span>
+                        <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">مشاهده</a>
                     </div>
                 </div>
+            </article>
         }
-    }
-    </div>
-</div>
-
+    </section>
+}

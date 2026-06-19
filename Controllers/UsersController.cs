@@ -133,7 +133,7 @@ namespace Cafe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Password,EmailConfirmed,Phone,Birthdate,CreatedAt")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserName,Email,Password,EmailConfirmed,Role,Phone,Birthdate,CreatedAt")] User user)
         {
             if (id != user.Id)
             {

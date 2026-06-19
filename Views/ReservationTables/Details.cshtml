@@ -1,36 +1,32 @@
-﻿@model Cafe.Models.ReservationTables
+@model Cafe.Models.ReservationTables
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "جزئیات رزرو";
 }
 
-<h1>Details</h1>
+<section class="page-hero">
+    <div class="page-eyebrow">جزئیات رزرو</div>
+    <h1 class="page-title">رزرو میز @Model.Table.Id</h1>
+    <p class="page-subtitle">اطلاعات کامل این رزرو در این بخش نمایش داده می‌شود.</p>
+</section>
 
-<div>
-    <h4>ReservationTables</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Table)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Table.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReserveDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReserveDate)
-        </dd>
+<div class="panel">
+    <dl class="detail-list">
+        <div class="detail-row">
+            <dt>شماره میز</dt>
+            <dd>@Html.DisplayFor(model => model.Table.Id)</dd>
+        </div>
+        <div class="detail-row">
+            <dt>کاربر</dt>
+            <dd>@Html.DisplayFor(model => model.User.Email)</dd>
+        </div>
+        <div class="detail-row">
+            <dt>تاریخ رزرو</dt>
+            <dd>@Html.DisplayFor(model => model.ReserveDate)</dd>
+        </div>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="actions mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a>
+        <a asp-action="Index" class="btn btn-outline-secondary">بازگشت</a>
+    </div>
 </div>

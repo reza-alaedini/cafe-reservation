@@ -1,41 +1,56 @@
-﻿@model IEnumerable<Cafe.Models.ReserveTable>
+@model IEnumerable<Cafe.Models.ReserveTable>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "میزها";
 }
 
-<h1>Index</h1>
+<section class="page-hero">
+    <div class="d-flex flex-column flex-lg-row justify-content-between gap-3">
+        <div>
+            <div class="page-eyebrow">مدیریت میزها</div>
+            <h1 class="page-title">میزهای قابل رزرو</h1>
+            <p class="page-subtitle">قیمت و وضعیت میزهای کافه را برای رزرو مشتری‌ها مدیریت کنید.</p>
+        </div>
+        <div class="align-self-lg-center">
+            <a asp-action="Create" class="btn btn-primary">افزودن میز</a>
+        </div>
+    </div>
+</section>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsAvalible)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAvalible)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="table-card">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>قیمت</th>
+                    <th>وضعیت</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>
+                            <span class="status-badge @(item.IsAvalible ? "available" : "unavailable")">
+                                @(item.IsAvalible ? "آماده رزرو" : "غیرفعال")
+                            </span>
+                        </td>
+                        <td>
+                            <div class="actions">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">ویرایش</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">جزئیات</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">حذف</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (!Model.Any())
+    {
+        <div class="empty-state">هنوز میزی ثبت نشده است.</div>
+    }
+</div>

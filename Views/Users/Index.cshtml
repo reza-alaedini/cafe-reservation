@@ -1,56 +1,60 @@
-﻿@model IEnumerable<Cafe.Models.User>
+@model IEnumerable<Cafe.Models.User>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "کاربران";
 }
 
-<!DOCTYPE html>
+<section class="page-hero">
+    <div class="d-flex flex-column flex-lg-row justify-content-between gap-3">
+        <div>
+            <div class="page-eyebrow">مدیریت کاربران</div>
+            <h1 class="page-title">کاربران سیستم</h1>
+            <p class="page-subtitle">اطلاعات کاربران ثبت نام شده را بررسی و مدیریت کنید.</p>
+        </div>
+        <div class="align-self-lg-center">
+            <a class="btn btn-primary" asp-action="Create">افزودن کاربر</a>
+        </div>
+    </div>
+</section>
 
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User List</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-4">
-        <p>
-            <a class="btn btn-primary" asp-action="Create">Create New</a>
-        </p>
-        <table class="table table-striped">
+<div class="table-card">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
-                    <th>@Html.DisplayNameFor(model => model.Email)</th>
-                    <th>@Html.DisplayNameFor(model => model.Password)</th>
-                    <th>@Html.DisplayNameFor(model => model.EmailConfirmed)</th>
-                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                    <th>@Html.DisplayNameFor(model => model.Birthdate)</th>
-                    <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
-                    <th>Action</th>
+                    <th>نام</th>
+                    <th>نام کاربری</th>
+                    <th>ایمیل</th>
+                    <th>تلفن</th>
+                    <th>نقش</th>
+                    <th>تاریخ عضویت</th>
+                    <th>عملیات</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td class="fw-bold">@(item.Name ?? "-")</td>
+                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Password)</td>
-                        <td>@Html.DisplayFor(modelItem => item.EmailConfirmed)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Phone)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Birthdate)</td>
+                        <td>@(item.Phone ?? "-")</td>
+                        <td><span class="status-badge available">@(item.Role?.ToString() ?? "USER")</span></td>
                         <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
                         <td>
-                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <div class="actions">
+                                <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">ویرایش</a>
+                                <a class="btn btn-outline-secondary btn-sm" asp-action="Details" asp-route-id="@item.Id">جزئیات</a>
+                                <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                            </div>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-    @* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> *@
-</body>
-</html>
+    @if (!Model.Any())
+    {
+        <div class="empty-state">هنوز کاربری ثبت نشده است.</div>
+    }
+</div>

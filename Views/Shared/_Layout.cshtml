@@ -1,97 +1,81 @@
-﻿@{
-    // var user = ViewBag.UserModel as User;
+@{
     var user = (User?)Context.Items["User"];
+    var title = ViewData["Title"] ?? ViewBag.Title ?? "کافه";
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 <head>
-    <title>@ViewBag.Title - Cafe</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-    <style>
-        body {
-        }
-        .navbar {
-            background-color: #212529;
-            border-color: #212529;
-        }
-        .navbar .navbar-brand,
-        .navbar .nav-link {
-            color: #ffffff;
-        }
-        .nav-link:hover {
-            color: #f8f9fa;
-        }
-        .navbar .nav-link.active {
-            color: #007bff;
-        }
-        .container {
-            padding-top: 2rem;
-        }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title - کافه رزرو</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @RenderSection("styles", required: false)
-    @RenderSection("scripts", required: false)
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Cafe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="~/">Home</a>                    
-                </li>
-                @if (user != null)
-                {
-                <li class="nav-item">
-                        @if(user.Role == Cafe.Enums.Role.ADMIN)
-                        {
-                            <a class="nav-link" href="~/reservationtables">All Reserves</a>
-                        }
-                        else
-                        {
-                            <a class="nav-link" href="~/reservationtables">My Reserves</a>
-                        }
-
-                </li>
-                
-                    if(user.Role == Cafe.Enums.Role.ADMIN)
+    <nav class="navbar navbar-expand-lg navbar-dark app-navbar">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">کافه رزرو</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="باز کردن منو">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">منو</a>
+                    </li>
+                    @if (user != null)
                     {
-                        
-                    
-                    <li class="nav-item">
-
-                    <a class="nav-link" href="~/users">Users</a>
-                </li>
                         <li class="nav-item">
-
-                            <a class="nav-link" href="~/products">Products</a>
+                            <a class="nav-link" asp-controller="ReservationTables" asp-action="Index">
+                                @(user.Role == Cafe.Enums.Role.ADMIN ? "همه رزروها" : "رزروهای من")
+                            </a>
                         </li>
-                }}
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                @if (user != null)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/users/logout">Log Out</a>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/users/Login">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/users/Register">Register</a>
-                    </li>
-                }
-            </ul>
+                        @if (user.Role == Cafe.Enums.Role.ADMIN)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="ReserveTables" asp-action="Index">میزها</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Products" asp-action="Index">محصولات</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Users" asp-action="Index">کاربران</a>
+                            </li>
+                        }
+                    }
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    @if (user != null)
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light btn-sm" asp-controller="Users" asp-action="Logout">خروج</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Users" asp-action="Login">ورود</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-light btn-sm" asp-controller="Users" asp-action="Register">ثبت نام</a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
     </nav>
-    <div class="container">
-        @RenderBody()
-    </div>
+
+    <main class="app-main">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

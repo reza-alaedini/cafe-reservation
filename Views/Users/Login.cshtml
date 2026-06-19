@@ -1,48 +1,33 @@
-﻿@model Cafe.Models.LoginModel
+@model Cafe.Models.LoginModel
+
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "ورود";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Cafe</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+<section class="page-hero auth-wrap">
+    <div class="page-eyebrow">خوش آمدید</div>
+    <h1 class="page-title">ورود به کافه رزرو</h1>
+    <p class="page-subtitle">برای مدیریت رزروها یا ثبت سفارش، وارد حساب خود شوید.</p>
+</section>
 
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header text-center">
-                <h1>@ViewData["Title"]</h1>
-            </div>
-            <div class="card-body">
-                <form asp-action="Login">
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label">Email</label>
-                        <input asp-for="Email" class="form-control" placeholder="Enter your email">
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password" class="control-label">Password</label>
-                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password">
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group text-center">
-                        <input type="submit" value="Login" class="btn btn-primary">
-                    </div>
-                </form>
-            </div>
+<div class="panel auth-wrap">
+    <form asp-action="Login" class="row g-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-12">
+            <label asp-for="Email" class="form-label">ایمیل</label>
+            <input asp-for="Email" class="form-control" placeholder="example@email.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-    </div>
-
-    <!-- Include Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+        <div class="col-12">
+            <label asp-for="Password" class="form-label">رمز عبور</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="col-12 d-grid">
+            <button type="submit" class="btn btn-primary">ورود</button>
+        </div>
+        <div class="col-12 text-center">
+            <a asp-action="Register">حساب ندارید؟ ثبت نام کنید</a>
+        </div>
+    </form>
+</div>

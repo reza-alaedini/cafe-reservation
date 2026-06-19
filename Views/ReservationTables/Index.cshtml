@@ -1,47 +1,54 @@
-﻿@model IEnumerable<Cafe.Models.ReservationTables>
+@model IEnumerable<Cafe.Models.ReservationTables>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "رزروها";
 }
 
-<h1>Index</h1>
+<section class="page-hero">
+    <div class="d-flex flex-column flex-lg-row justify-content-between gap-3">
+        <div>
+            <div class="page-eyebrow">مدیریت رزرو</div>
+            <h1 class="page-title">رزروهای میز</h1>
+            <p class="page-subtitle">رزروهای ثبت شده را بررسی کنید و زمان یا میز هر رزرو را مدیریت کنید.</p>
+        </div>
+        <div class="align-self-lg-center">
+            <a asp-action="Create" class="btn btn-primary">رزرو جدید</a>
+        </div>
+    </div>
+</section>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Table)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReserveDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Table.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReserveDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="table-card">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>شماره میز</th>
+                    <th>کاربر</th>
+                    <th>تاریخ رزرو</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-bold">@Html.DisplayFor(modelItem => item.Table.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.User.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ReserveDate)</td>
+                        <td>
+                            <div class="actions">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">ویرایش</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">جزئیات</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">حذف</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (!Model.Any())
+    {
+        <div class="empty-state">هنوز رزروی ثبت نشده است.</div>
+    }
+</div>

@@ -1,41 +1,55 @@
-﻿@model Cafe.Models.Product
+@model Cafe.Models.Product
 
 @{
     var user = ViewBag.UserModel as User;
-    ViewData["Title"] = "Details";
-    
+    ViewData["Title"] = "جزئیات محصول";
 }
 
-<div class="container mt-7 ">
+<section class="page-hero">
+    <div class="page-eyebrow">جزئیات محصول</div>
+    <h1 class="page-title">@Model.Name</h1>
+    <p class="page-subtitle">@Model.Description</p>
+</section>
 
-    <div class="card mb-6">
-        <img class="rounded-circle" src="~/images/@Model.Image" alt="Product Image" height="500">
-        <div class="card-body">
-            <dl class="row">
-                <dt class="col-sm-3">Name:</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
-
-                <dt class="col-sm-3">Price:</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
-
-                <dt class="col-sm-3">Description:</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
-
-                <dt class="col-sm-3">Is Available:</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.IsAvalible)</dd>
-            </dl>
+<div class="panel">
+    <div class="row g-4 align-items-start">
+        <div class="col-lg-6">
+            <img class="detail-image" src="~/images/@Model.Image" alt="@Model.Name" />
         </div>
-    </div>
-
-    <div class="mt-3 text-center text-center-buttons">
-        @if (user != null && user.Role == Cafe.Enums.Role.ADMIN)
-        {
-            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a>
-            <a asp-controller="Products" asp-action="Index" class="btn btn-secondary">Back to List</a>
-        }
-        else{
-        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to List</a>
-        }
-        
+        <div class="col-lg-6">
+            <dl class="detail-list">
+                <div class="detail-row">
+                    <dt>نام محصول</dt>
+                    <dd>@Html.DisplayFor(model => model.Name)</dd>
+                </div>
+                <div class="detail-row">
+                    <dt>قیمت</dt>
+                    <dd><span class="price-chip">@Html.DisplayFor(model => model.Price)</span></dd>
+                </div>
+                <div class="detail-row">
+                    <dt>وضعیت</dt>
+                    <dd>
+                        <span class="status-badge @(Model.IsAvalible ? "available" : "unavailable")">
+                            @(Model.IsAvalible ? "موجود" : "ناموجود")
+                        </span>
+                    </dd>
+                </div>
+                <div class="detail-row">
+                    <dt>توضیحات</dt>
+                    <dd>@Html.DisplayFor(model => model.Description)</dd>
+                </div>
+            </dl>
+            <div class="actions mt-4">
+                @if (user != null && user.Role == Cafe.Enums.Role.ADMIN)
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a>
+                    <a asp-controller="Products" asp-action="Index" class="btn btn-outline-secondary">بازگشت به محصولات</a>
+                }
+                else
+                {
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">بازگشت به منو</a>
+                }
+            </div>
+        </div>
     </div>
 </div>
