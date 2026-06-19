@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\fonts\\font.css"
     },
     {
+      "Id": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\images\\07a08076-9016-4979-bde1-683fe89c7d51_tea-honey.jpg",
+      "PackagePath": "staticwebassets\\images\\07a08076-9016-4979-bde1-683fe89c7d51_tea-honey.jpg"
+    },
+    {
       "Id": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\images\\0bd6075a-5aaa-4571-9245-7fb0df4f897d_Cappuccino_at_Sightglass_Coffee.jpg",
       "PackagePath": "staticwebassets\\images\\0bd6075a-5aaa-4571-9245-7fb0df4f897d_Cappuccino_at_Sightglass_Coffee.jpg"
     },

@@ -47,10 +47,12 @@ namespace Cafe.Controllers
         }
 
         // GET: Products/Create
+        [Admin]
         public IActionResult Create()
         {
             return View();
         }
+        [Admin]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(string Name, string Description, bool IsActive, string Price, IFormFile Image)
@@ -65,6 +67,7 @@ namespace Cafe.Controllers
         }
 
         // GET: Products/Edit/5
+        [Admin]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,6 +106,7 @@ namespace Cafe.Controllers
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Admin]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, string? Name, string? Description, bool? IsAvalible, string? Price, IFormFile? Image)
         {
@@ -137,6 +141,7 @@ namespace Cafe.Controllers
         }
 
         // GET: Products/Delete/5
+        [Admin]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,6 +160,7 @@ namespace Cafe.Controllers
         }
 
         // POST: Products/Delete/5
+        [Admin]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

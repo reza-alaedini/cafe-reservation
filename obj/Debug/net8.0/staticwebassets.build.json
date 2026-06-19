@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UYEefTf7ja+19RpTzSyKiTNJdxwbJsCfLKs9qNYvau8=",
+  "Hash": "B05w6x/lGt8SEq+5QdTzemvQYPhzkhBhZ/AWmwTKHos=",
   "Source": "Cafe",
   "BasePath": "_content/Cafe",
   "Mode": "Default",
@@ -281,6 +281,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fonts\\font.css"
+    },
+    {
+      "Identity": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\images\\07a08076-9016-4979-bde1-683fe89c7d51_tea-honey.jpg",
+      "SourceId": "Cafe",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\",
+      "BasePath": "_content/Cafe",
+      "RelativePath": "images/07a08076-9016-4979-bde1-683fe89c7d51_tea-honey.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\07a08076-9016-4979-bde1-683fe89c7d51_tea-honey.jpg"
     },
     {
       "Identity": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\images\\0bd6075a-5aaa-4571-9245-7fb0df4f897d_Cappuccino_at_Sightglass_Coffee.jpg",

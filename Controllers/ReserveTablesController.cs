@@ -10,7 +10,7 @@ using Cafe.Models;
 
 namespace Cafe.Controllers
 {
-    
+    [Admin]
     public class ReserveTablesController : Controller
     {
         private readonly DataContext _context;
@@ -21,7 +21,6 @@ namespace Cafe.Controllers
         }
 
         // GET: ReserveTables
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.ReserveTables.ToListAsync());
@@ -88,7 +87,7 @@ namespace Cafe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Price,IsAvalible")] ReserveTable reserveTable)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Price,IsAvalible")] ReserveTable reserveTable)
         {
             if (id != reserveTable.Id)
             {

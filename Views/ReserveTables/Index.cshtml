@@ -22,6 +22,7 @@
         <table class="table table-hover align-middle">
             <thead>
                 <tr>
+                    <th>شماره میز</th>
                     <th>قیمت</th>
                     <th>وضعیت</th>
                     <th>عملیات</th>
@@ -31,6 +32,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td class="fw-bold">@item.Id</td>
                         <td class="fw-bold">@Html.DisplayFor(modelItem => item.Price)</td>
                         <td>
                             <span class="status-badge @(item.IsAvalible ? "available" : "unavailable")">

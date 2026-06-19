@@ -65,6 +65,7 @@ namespace Cafe.Controllers
         }
 
         // GET: Users/Create
+        [Admin]
         public IActionResult Create()
         {
             return View();
@@ -113,6 +114,7 @@ namespace Cafe.Controllers
 
         // GET: Users/Edit/5
 
+        [Admin]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -131,6 +133,7 @@ namespace Cafe.Controllers
         // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Admin]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserName,Email,Password,EmailConfirmed,Phone,Birthdate,CreatedAt,Role")] User user)
@@ -167,6 +170,7 @@ namespace Cafe.Controllers
         }
 
         // GET: Users/Delete/5
+        [Admin]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -185,6 +189,7 @@ namespace Cafe.Controllers
         }
 
         // POST: Users/Delete/5
+        [Admin]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
