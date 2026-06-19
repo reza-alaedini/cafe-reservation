@@ -22,7 +22,7 @@
         </div>
         <div class="detail-row">
             <dt>تاریخ رزرو</dt>
-            <dd>@Html.DisplayFor(model => model.ReserveDate)</dd>
+            <dd>@JalaliDate.ToFullDateTime(Model.ReserveDate)</dd>
         </div>
     </dl>
     <div class="actions mt-4">

@@ -17,135 +17,135 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Cafe
 build_property.RootNamespace = Cafe
-build_property.ProjectDir = D:\university\Term-3\سمت سرور\projects\cafe-reservation\cafe-reservation\cafe\
+build_property.ProjectDir = d:\university\Term-3\سمت سرور\projects\cafe-reservation\cafe-reservation\cafe\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\university\Term-3\سمت سرور\projects\cafe-reservation\cafe-reservation\cafe
+build_property.MSBuildProjectDirectory = d:\university\Term-3\سمت سرور\projects\cafe-reservation\cafe-reservation\cafe
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Home/Error404.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Home/Error404.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvcjQwNC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Home/Index.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Home/Privacy.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/CardList.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/CardList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ2FyZExpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Create.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Delete.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Details.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Edit.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Index.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Create.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25UYWJsZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Delete.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25UYWJsZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Details.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25UYWJsZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Edit.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25UYWJsZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Index.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReservationTables/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25UYWJsZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Create.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2ZVRhYmxlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Delete.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2ZVRhYmxlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Details.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2ZVRhYmxlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Edit.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2ZVRhYmxlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Index.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/ReserveTables/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2ZVRhYmxlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Shared/Error.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Create.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Delete.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Details.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Edit.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Index.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Login.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Register.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Users/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/_ViewImports.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/_ViewStart.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Shared/_Layout.cshtml]
+[d:/university/Term-3/سمت سرور/projects/cafe-reservation/cafe-reservation/cafe/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-hipz8jw4cv

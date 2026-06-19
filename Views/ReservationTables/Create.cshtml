@@ -18,9 +18,15 @@
             <select asp-for="TableId" class="form-select" asp-items="ViewBag.TableId"></select>
         </div>
         <div class="col-md-6">
-            <label asp-for="ReserveDate" class="form-label">تاریخ و زمان رزرو</label>
-            <input asp-for="ReserveDate" class="form-control" />
-            <span asp-validation-for="ReserveDate" class="text-danger"></span>
+            <label for="ReserveDateJalaliDisplay" class="form-label">تاریخ و زمان رزرو</label>
+            <div class="jalali-picker" data-jalali-picker>
+                <input id="ReserveDateJalali" name="ReserveDateJalali" type="hidden" value="@ViewData["ReserveDateJalali"]" />
+                <button id="ReserveDateJalaliDisplay" type="button" class="form-control jalali-picker-button" data-jalali-toggle>انتخاب تاریخ</button>
+                <input type="time" class="form-control jalali-time-input" data-jalali-time aria-label="زمان رزرو" />
+                <div class="jalali-calendar" data-jalali-calendar hidden></div>
+            </div>
+            @Html.ValidationMessage("ReserveDateJalali", null, new { @class = "text-danger" })
+            <div class="form-text">تاریخ را از تقویم و زمان را از فیلد ساعت انتخاب کنید.</div>
         </div>
         <div class="col-12 actions">
             <button type="submit" class="btn btn-primary">ثبت رزرو</button>

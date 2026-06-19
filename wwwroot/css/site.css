@@ -190,6 +190,104 @@ a:hover {
   margin-bottom: 0.45rem;
 }
 
+.jalali-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 8.5rem;
+  gap: 0.65rem;
+  position: relative;
+}
+
+.jalali-picker-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 3rem;
+  color: var(--ink);
+  background: #fff;
+  text-align: right;
+}
+
+.jalali-time-input {
+  direction: ltr;
+  text-align: center;
+}
+
+.jalali-calendar {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 20;
+  width: min(21rem, calc(100vw - 2rem));
+  padding: 0.9rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.jalali-calendar-header {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr 2.25rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.jalali-calendar-title {
+  font-weight: 850;
+  text-align: center;
+}
+
+.jalali-calendar-nav,
+.jalali-calendar-day {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.jalali-calendar-nav:hover,
+.jalali-calendar-day:hover {
+  background: #f1dfcf;
+}
+
+.jalali-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 2.25rem);
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.jalali-calendar-weekday {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.jalali-calendar-empty {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.jalali-calendar-day.today {
+  color: var(--accent);
+  border: 1px solid rgba(15, 118, 110, 0.45);
+}
+
+.jalali-calendar-day.selected {
+  color: #fff;
+  background: var(--primary);
+}
+
+.jalali-calendar-day.selected:hover {
+  background: var(--primary-dark);
+}
+
 .table-card {
   overflow: hidden;
   background: var(--surface);
@@ -361,5 +459,9 @@ a:hover {
   .detail-row {
     grid-template-columns: 1fr;
     gap: 0.25rem;
+  }
+
+  .jalali-picker {
+    grid-template-columns: 1fr;
   }
 }

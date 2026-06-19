@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Cafe.Helpers;
 using Cafe.Data;
 using Cafe.Models;
 
@@ -61,13 +62,24 @@ namespace Cafe.Controllers
         public IActionResult Create()
         {
             ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id");
+            ViewData["ReserveDateJalali"] = JalaliDate.ToInputValue(DateTime.Now.AddHours(1));
             return View();
         }
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create(ReservationTables reservationTables)
+        public async Task<IActionResult> Create(ReservationTables reservationTables, string? ReserveDateJalali)
         {
             var user = (User?)HttpContext.Items["User"];
+            ViewData["ReserveDateJalali"] = ReserveDateJalali;
+
+            if (!JalaliDate.TryParseInput(ReserveDateJalali, out var reserveDate))
+            {
+                ModelState.AddModelError("ReserveDateJalali", "تاریخ رزرو را با فرمت ۱۴۰۳/۰۳/۳۰ ۱۸:۳۰ وارد کنید.");
+                ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
+                return View(reservationTables);
+            }
+
+            reservationTables.ReserveDate = reserveDate;
             var exist = _context.Reservations.OrderByDescending(x=>x.ReserveDate).Where(x => x.TableId == reservationTables.TableId);
             if(exist == null)
             {
@@ -79,8 +91,9 @@ namespace Cafe.Controllers
             foreach (var reserve in exist) {
                 if (reserve.ReserveDate.AddHours(1.5) >= reservationTables.ReserveDate && reserve.ReserveDate <= reservationTables.ReserveDate.AddHours(1.5))
                 {
-                    ModelState.AddModelError(string.Empty, "This Table was reserved");
-                    return View();
+                    ModelState.AddModelError(string.Empty, "این میز در زمان انتخاب شده رزرو شده است.");
+                    ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
+                    return View(reservationTables);
                 } 
             }
                 reservationTables.UserId = user.Id;
@@ -105,6 +118,7 @@ namespace Cafe.Controllers
             }
             ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", reservationTables.UserId);
+            ViewData["ReserveDateJalali"] = JalaliDate.ToInputValue(reservationTables.ReserveDate);
             return View(reservationTables);
         }
 
@@ -113,11 +127,20 @@ namespace Cafe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,TableId,ReserveDate")] ReservationTables reservationTables)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,TableId")] ReservationTables reservationTables, string? ReserveDateJalali)
         {
             if (id != reservationTables.Id)
             {
                 return NotFound();
+            }
+
+            if (!JalaliDate.TryParseInput(ReserveDateJalali, out var reserveDate))
+            {
+                ModelState.AddModelError("ReserveDateJalali", "تاریخ رزرو را با فرمت ۱۴۰۳/۰۳/۳۰ ۱۸:۳۰ وارد کنید.");
+            }
+            else
+            {
+                reservationTables.ReserveDate = reserveDate;
             }
 
             if (ModelState.IsValid)
@@ -141,6 +164,8 @@ namespace Cafe.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", reservationTables.UserId);
+            ViewData["ReserveDateJalali"] = ReserveDateJalali;
             return View(reservationTables);
         }
 

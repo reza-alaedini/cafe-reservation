@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VwHN18YfxLgVbQsBurObLuHy+yPR8IAJ23ld6+g1mG0=",
+  "Hash": "k2bhSmxB8K1R+e/UvidNYvDuGobpGT+8/RHK5x3AKI8=",
   "Source": "Cafe",
   "BasePath": "_content/Cafe",
   "Mode": "Default",
@@ -319,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\414ee6d1-dd9b-49f1-aaa4-57e2539e9800_download.jpg"
+    },
+    {
+      "Identity": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\images\\82382791-a8c2-41f3-8637-5c7ff1caac4e_iced-latte.jpg",
+      "SourceId": "Cafe",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\",
+      "BasePath": "_content/Cafe",
+      "RelativePath": "images/82382791-a8c2-41f3-8637-5c7ff1caac4e_iced-latte.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\82382791-a8c2-41f3-8637-5c7ff1caac4e_iced-latte.jpg"
     },
     {
       "Identity": "D:\\university\\Term-3\\سمت سرور\\projects\\cafe-reservation\\cafe-reservation\\cafe\\wwwroot\\images\\88793a04-d378-44c9-bf83-64355f83e20c_images.jpg",

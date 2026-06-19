@@ -34,7 +34,7 @@
                     <tr>
                         <td class="fw-bold">@Html.DisplayFor(modelItem => item.Table.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.User.Email)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ReserveDate)</td>
+                        <td>@JalaliDate.ToFullDateTime(item.ReserveDate)</td>
                         <td>
                             <div class="actions">
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">ویرایش</a>
