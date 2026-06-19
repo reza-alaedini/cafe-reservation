@@ -1,6 +1,8 @@
 @{
     var user = (User?)Context.Items["User"];
     var title = ViewData["Title"] ?? ViewBag.Title ?? "کافه";
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    string IsActive(string controller) => string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase) ? "active" : "";
 }
 
 <!DOCTYPE html>
@@ -23,25 +25,25 @@
             <div class="collapse navbar-collapse" id="mainNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">منو</a>
+                        <a class='nav-link @IsActive("Home")' asp-controller="Home" asp-action="Index">منو</a>
                     </li>
                     @if (user != null)
                     {
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="ReservationTables" asp-action="Index">
+                            <a class='nav-link @IsActive("ReservationTables")' asp-controller="ReservationTables" asp-action="Index">
                                 @(user.Role == Cafe.Enums.Role.ADMIN ? "همه رزروها" : "رزروهای من")
                             </a>
                         </li>
                         @if (user.Role == Cafe.Enums.Role.ADMIN)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="ReserveTables" asp-action="Index">میزها</a>
+                                <a class='nav-link @IsActive("ReserveTables")' asp-controller="ReserveTables" asp-action="Index">میزها</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Products" asp-action="Index">محصولات</a>
+                                <a class='nav-link @IsActive("Products")' asp-controller="Products" asp-action="Index">محصولات</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Users" asp-action="Index">کاربران</a>
+                                <a class='nav-link @IsActive("Users")' asp-controller="Users" asp-action="Index">کاربران</a>
                             </li>
                         }
                     }
@@ -56,7 +58,7 @@
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Users" asp-action="Login">ورود</a>
+                            <a class='nav-link @IsActive("Users")' asp-controller="Users" asp-action="Login">ورود</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-light btn-sm" asp-controller="Users" asp-action="Register">ثبت نام</a>

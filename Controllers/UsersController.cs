@@ -13,12 +13,12 @@ using NuGet.Common;
 
 namespace Cafe.Controllers
 {
-    
+
     public class UsersController : Controller
     {
         private DataContext _context;
         private IJwtUtils _jwtUtils;
-        public UsersController(DataContext context , IJwtUtils jwtUtils)
+        public UsersController(DataContext context, IJwtUtils jwtUtils)
         {
             _context = context;
             _jwtUtils = jwtUtils;
@@ -40,7 +40,7 @@ namespace Cafe.Controllers
         }
 
         // GET: Users/Details/5
-        
+
         public async Task<IActionResult> Details(int? id)
         {
             var exist = (User?)HttpContext.Items["User"];
@@ -79,7 +79,7 @@ namespace Cafe.Controllers
         {
             if (!_context.Users.Any(x => x.Email == user.Email))
             {
-                var newUser = new User(user.Email, user.Password , user.UserName);
+                var newUser = new User(user.Email, user.Password, user.UserName);
                 _context.Add(newUser);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -100,19 +100,19 @@ namespace Cafe.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register(User user)
         {
-            if (!_context.Users.Any(x=>x.Email == user.Email))
+            if (!_context.Users.Any(x => x.Email == user.Email))
             {
                 var newUser = new User(user.Email, user.Password, user.UserName);
                 _context.Add(newUser);
                 await _context.SaveChangesAsync();
-                return Redirect("/users/login");;
+                return Redirect("/users/login"); ;
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt");
             return View(user);
         }
 
         // GET: Users/Edit/5
-        
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -133,7 +133,7 @@ namespace Cafe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserName,Email,Password,EmailConfirmed,Role,Phone,Birthdate,CreatedAt")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,UserName,Email,Password,EmailConfirmed,Phone,Birthdate,CreatedAt,Role")] User user)
         {
             if (id != user.Id)
             {
@@ -142,24 +142,27 @@ namespace Cafe.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                var existingUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+
+                if (existingUser == null)
                 {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserExists(user.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+
+                existingUser.Name = user.Name;
+                existingUser.UserName = user.UserName;
+                existingUser.Email = user.Email;
+                existingUser.Password = user.Password;
+                existingUser.EmailConfirmed = user.EmailConfirmed;
+                existingUser.Phone = user.Phone;
+                existingUser.Birthdate = user.Birthdate;
+                existingUser.Role = user.Role;
+
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(user);
         }
 
@@ -207,7 +210,7 @@ namespace Cafe.Controllers
             if (ModelState.IsValid)
             {
                 //User user = _context.Users.Where(x=>x.Email == model.Email).First();
-                var user =  _context.Users.FirstOrDefault(x=>x.Email == model.Email);
+                var user = _context.Users.FirstOrDefault(x => x.Email == model.Email);
 
                 if (user != null)
                 {
