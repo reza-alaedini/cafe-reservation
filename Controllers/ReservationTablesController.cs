@@ -28,6 +28,11 @@ namespace Cafe.Controllers
         public async Task<IActionResult> Index()
         {
             var user = (User?)HttpContext.Items["User"];
+            ViewBag.AvailableTables = await _context.ReserveTables
+                .Where(table => table.IsAvalible)
+                .OrderBy(table => table.Id)
+                .ToListAsync();
+
             var dataContext = _context.Reservations.Include(r => r.Table).Include(r => r.User);
             if (user.Role != Enums.Role.ADMIN)
             {
@@ -59,11 +64,20 @@ namespace Cafe.Controllers
 
         // GET: ReservationTables/Create
         
-        public IActionResult Create()
+        public IActionResult Create(int? tableId)
         {
-            ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id");
+            var availableTables = _context.ReserveTables
+                .Where(table => table.IsAvalible)
+                .OrderBy(table => table.Id)
+                .ToList();
+            var selectedTable = tableId.HasValue
+                ? availableTables.FirstOrDefault(table => table.Id == tableId.Value)
+                : null;
+
+            ViewData["TableId"] = BuildTableSelectList(availableTables, tableId);
+            ViewBag.SelectedTable = selectedTable;
             ViewData["ReserveDateJalali"] = JalaliDate.ToInputValue(DateTime.Now.AddHours(1));
-            return View();
+            return View(new ReservationTables { TableId = selectedTable?.Id ?? 0 });
         }
         [Authorize]
         [HttpPost]
@@ -75,7 +89,15 @@ namespace Cafe.Controllers
             if (!JalaliDate.TryParseInput(ReserveDateJalali, out var reserveDate))
             {
                 ModelState.AddModelError("ReserveDateJalali", "تاریخ رزرو را با فرمت ۱۴۰۳/۰۳/۳۰ ۱۸:۳۰ وارد کنید.");
-                ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
+                PrepareCreateViewData(reservationTables.TableId, ReserveDateJalali);
+                return View(reservationTables);
+            }
+
+            var selectedTable = await _context.ReserveTables.FirstOrDefaultAsync(table => table.Id == reservationTables.TableId);
+            if (selectedTable == null || !selectedTable.IsAvalible)
+            {
+                ModelState.AddModelError(string.Empty, "این میز در حال حاضر قابل رزرو نیست.");
+                PrepareCreateViewData(reservationTables.TableId, ReserveDateJalali);
                 return View(reservationTables);
             }
 
@@ -92,7 +114,7 @@ namespace Cafe.Controllers
                 if (reserve.ReserveDate.AddHours(1.5) >= reservationTables.ReserveDate && reserve.ReserveDate <= reservationTables.ReserveDate.AddHours(1.5))
                 {
                     ModelState.AddModelError(string.Empty, "این میز در زمان انتخاب شده رزرو شده است.");
-                    ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
+                    PrepareCreateViewData(reservationTables.TableId, ReserveDateJalali);
                     return View(reservationTables);
                 } 
             }
@@ -116,7 +138,9 @@ namespace Cafe.Controllers
             {
                 return NotFound();
             }
-            ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
+            ViewData["TableId"] = BuildTableSelectList(
+                await _context.ReserveTables.OrderBy(table => table.Id).ToListAsync(),
+                reservationTables.TableId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", reservationTables.UserId);
             ViewData["ReserveDateJalali"] = JalaliDate.ToInputValue(reservationTables.ReserveDate);
             return View(reservationTables);
@@ -163,7 +187,9 @@ namespace Cafe.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TableId"] = new SelectList(_context.ReserveTables, "Id", "Id", reservationTables.TableId);
+            ViewData["TableId"] = BuildTableSelectList(
+                await _context.ReserveTables.OrderBy(table => table.Id).ToListAsync(),
+                reservationTables.TableId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email", reservationTables.UserId);
             ViewData["ReserveDateJalali"] = ReserveDateJalali;
             return View(reservationTables);
@@ -207,6 +233,28 @@ namespace Cafe.Controllers
         private bool ReservationTablesExists(int id)
         {
             return _context.Reservations.Any(e => e.Id == id);
+        }
+
+        private void PrepareCreateViewData(int tableId, string? reserveDateJalali)
+        {
+            var availableTables = _context.ReserveTables
+                .Where(table => table.IsAvalible)
+                .OrderBy(table => table.Id)
+                .ToList();
+
+            ViewData["TableId"] = BuildTableSelectList(availableTables, tableId);
+            ViewBag.SelectedTable = availableTables.FirstOrDefault(table => table.Id == tableId);
+            ViewData["ReserveDateJalali"] = reserveDateJalali;
+        }
+
+        private static List<SelectListItem> BuildTableSelectList(IEnumerable<ReserveTable> tables, int? selectedTableId)
+        {
+            return tables.Select(table => new SelectListItem
+            {
+                Value = table.Id.ToString(),
+                Text = $"میز {table.Id} - هزینه رزرو: {table.Price}",
+                Selected = selectedTableId == table.Id
+            }).ToList();
         }
     }
 }

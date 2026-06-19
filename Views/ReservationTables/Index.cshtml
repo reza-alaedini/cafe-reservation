@@ -1,20 +1,61 @@
 @model IEnumerable<Cafe.Models.ReservationTables>
 
 @{
-    ViewData["Title"] = "رزروها";
+    ViewData["Title"] = "رزرو میز";
+    var user = (User?)Context.Items["User"];
+    var availableTables = ViewBag.AvailableTables as IEnumerable<Cafe.Models.ReserveTable> ?? Enumerable.Empty<Cafe.Models.ReserveTable>();
 }
 
 <section class="page-hero">
     <div class="d-flex flex-column flex-lg-row justify-content-between gap-3">
         <div>
-            <div class="page-eyebrow">مدیریت رزرو</div>
-            <h1 class="page-title">رزروهای میز</h1>
-            <p class="page-subtitle">رزروهای ثبت شده را بررسی کنید و زمان یا میز هر رزرو را مدیریت کنید.</p>
+            <div class="page-eyebrow">رزرو میز</div>
+            <h1 class="page-title">میزهای قابل رزرو</h1>
+            <p class="page-subtitle">قبل از رزرو، شماره میز، هزینه رزرو و وضعیت آن را ببینید و سپس میز دلخواهتان را انتخاب کنید.</p>
         </div>
-        <div class="align-self-lg-center">
-            <a asp-action="Create" class="btn btn-primary">رزرو جدید</a>
-        </div>
+        @if (user?.Role == Cafe.Enums.Role.ADMIN)
+        {
+            <div class="align-self-lg-center">
+                <a asp-controller="ReserveTables" asp-action="Index" class="btn btn-outline-primary">مدیریت میزها</a>
+            </div>
+        }
     </div>
+</section>
+
+@if (!availableTables.Any())
+{
+    <div class="panel empty-state mb-4">در حال حاضر میز فعالی برای رزرو وجود ندارد.</div>
+}
+else
+{
+    <section class="table-option-grid mb-4">
+        @foreach (var table in availableTables)
+        {
+            <article class="table-option-card">
+                <div>
+                    <div class="table-option-kicker">میز شماره</div>
+                    <h2 class="table-option-title">@table.Id</h2>
+                </div>
+                <dl class="table-option-meta">
+                    <div>
+                        <dt>هزینه رزرو</dt>
+                        <dd>@table.Price</dd>
+                    </div>
+                    <div>
+                        <dt>وضعیت</dt>
+                        <dd><span class="status-badge available">قابل رزرو</span></dd>
+                    </div>
+                </dl>
+                <a asp-action="Create" asp-route-tableId="@table.Id" class="btn btn-primary w-100">انتخاب و رزرو</a>
+            </article>
+        }
+    </section>
+}
+
+<section class="page-hero">
+    <div class="page-eyebrow">پیگیری رزرو</div>
+    <h2 class="section-title mb-0">رزروهای ثبت شده</h2>
+    <p class="page-subtitle">رزروهای قبلی خود را ببینید یا جزئیات آن‌ها را بررسی کنید.</p>
 </section>
 
 <div class="table-card">

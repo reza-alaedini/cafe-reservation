@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "رزرو جدید";
+    var selectedTable = ViewBag.SelectedTable as Cafe.Models.ReserveTable;
 }
 
 <section class="page-hero">
@@ -14,8 +15,33 @@
     <form asp-action="Create" class="row g-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-md-6">
-            <label asp-for="TableId" class="form-label">میز</label>
-            <select asp-for="TableId" class="form-select" asp-items="ViewBag.TableId"></select>
+            @if (selectedTable != null)
+            {
+                <input type="hidden" asp-for="TableId" />
+                <div class="selected-table-summary">
+                    <div>
+                        <div class="table-option-kicker">میز انتخاب شده</div>
+                        <h2 class="table-option-title">@selectedTable.Id</h2>
+                    </div>
+                    <dl class="table-option-meta">
+                        <div>
+                            <dt>هزینه رزرو</dt>
+                            <dd>@selectedTable.Price</dd>
+                        </div>
+                        <div>
+                            <dt>وضعیت</dt>
+                            <dd><span class="status-badge available">قابل رزرو</span></dd>
+                        </div>
+                    </dl>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">انتخاب میز دیگر</a>
+                </div>
+            }
+            else
+            {
+                <label asp-for="TableId" class="form-label">میز</label>
+                <select asp-for="TableId" class="form-select" asp-items="ViewBag.TableId"></select>
+                <span asp-validation-for="TableId" class="text-danger"></span>
+            }
         </div>
         <div class="col-md-6">
             <label for="ReserveDateJalaliDisplay" class="form-label">تاریخ و زمان رزرو</label>
