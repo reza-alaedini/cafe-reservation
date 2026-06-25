@@ -16,6 +16,7 @@ namespace Cafe.Controllers
 
     public class ReservationTablesController : Controller
     {
+        private static readonly TimeSpan ReservationDuration = TimeSpan.FromMinutes(90);
         private readonly DataContext _context;
 
         public ReservationTablesController(DataContext context)
@@ -102,26 +103,29 @@ namespace Cafe.Controllers
             }
 
             reservationTables.ReserveDate = reserveDate;
-            var exist = _context.Reservations.OrderByDescending(x=>x.ReserveDate).Where(x => x.TableId == reservationTables.TableId);
-            if(exist == null)
+
+            var requestedStart = reserveDate;
+            var requestedEnd = requestedStart.Add(ReservationDuration);
+            var conflictingReservation = await _context.Reservations
+                .Where(reservation =>
+                    reservation.TableId == reservationTables.TableId &&
+                    reservation.ReserveDate < requestedEnd &&
+                    reservation.ReserveDate.AddMinutes(ReservationDuration.TotalMinutes) > requestedStart)
+                .OrderBy(reservation => reservation.ReserveDate)
+                .FirstOrDefaultAsync();
+
+            if (conflictingReservation != null)
             {
-                reservationTables.UserId = user.Id;
-                _context.Add(reservationTables);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                SetReservationConflictMessage(conflictingReservation);
+                ModelState.AddModelError(string.Empty, ViewBag.ReservationConflictMessage);
+                PrepareCreateViewData(reservationTables.TableId, ReserveDateJalali);
+                return View(reservationTables);
             }
-            foreach (var reserve in exist) {
-                if (reserve.ReserveDate.AddHours(1.5) >= reservationTables.ReserveDate && reserve.ReserveDate <= reservationTables.ReserveDate.AddHours(1.5))
-                {
-                    ModelState.AddModelError(string.Empty, "این میز در زمان انتخاب شده رزرو شده است.");
-                    PrepareCreateViewData(reservationTables.TableId, ReserveDateJalali);
-                    return View(reservationTables);
-                } 
-            }
-                reservationTables.UserId = user.Id;
-                _context.Add(reservationTables);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+            reservationTables.UserId = user.Id;
+            _context.Add(reservationTables);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
 
         }
 
@@ -255,6 +259,15 @@ namespace Cafe.Controllers
                 Text = $"میز {table.Id} - هزینه رزرو: {table.Price}",
                 Selected = selectedTableId == table.Id
             }).ToList();
+        }
+
+        private void SetReservationConflictMessage(ReservationTables reservation)
+        {
+            var reservedFrom = JalaliDate.ToShortDateTime(reservation.ReserveDate);
+            var reservedUntil = JalaliDate.ToShortDateTime(reservation.ReserveDate.Add(ReservationDuration));
+
+            ViewBag.ReservationConflictTitle = "این زمان قابل رزرو نیست";
+            ViewBag.ReservationConflictMessage = $"این میز از {reservedFrom} تا {reservedUntil} رزرو است. لطفا زمانی خارج از این بازه انتخاب کنید.";
         }
     }
 }

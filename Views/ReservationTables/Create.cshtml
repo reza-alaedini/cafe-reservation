@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "رزرو جدید";
     var selectedTable = ViewBag.SelectedTable as Cafe.Models.ReserveTable;
+    var reservationConflictTitle = ViewBag.ReservationConflictTitle as string;
+    var reservationConflictMessage = ViewBag.ReservationConflictMessage as string;
 }
 
 <section class="page-hero">
@@ -60,3 +62,37 @@
         </div>
     </form>
 </div>
+
+@if (!string.IsNullOrWhiteSpace(reservationConflictMessage))
+{
+    <div class="modal fade" id="reservationConflictModal" tabindex="-1" aria-labelledby="reservationConflictModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="reservationConflictModalLabel">@(reservationConflictTitle ?? "این زمان قابل رزرو نیست")</h2>
+                    <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="بستن"></button>
+                </div>
+                <div class="modal-body">
+                    @reservationConflictMessage
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">انتخاب زمان دیگر</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @if (!string.IsNullOrWhiteSpace(reservationConflictMessage))
+    {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var modalElement = document.getElementById('reservationConflictModal');
+                if (modalElement && window.bootstrap) {
+                    bootstrap.Modal.getOrCreateInstance(modalElement).show();
+                }
+            });
+        </script>
+    }
+}
